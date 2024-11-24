@@ -11,6 +11,9 @@ export default {
         'opensans': ['Open Sans', 'sans-serif'],
         'nunito': ['Nunito', 'sans-serif'],
       },
+      maxWidth: {
+        'container': '1060px',
+      },
     },
   },
   plugins: [],
