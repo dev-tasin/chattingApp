@@ -42,7 +42,7 @@ const Login = () => {
     }
 
   return (
-    <div className='flex mt-[100px]'>
+    <div className='flex'>
         <div className='w-1/2 flex justify-end items-center mr-[175px]'>
             <div className='pl-[100px] '>
                 <h2 className='font-nunito font-bold text-[34.4px] text-[#11175D] pb-[30px]'>Login to your account!</h2>
