@@ -15,7 +15,7 @@ export default {
         'primary': '#5F35F5',
       },
       maxWidth: {
-        'container': '1060px',
+        'container': '1385px',
       },
     },
   },
