@@ -69,7 +69,7 @@ const Registration = () => {
                 setPassword("")
                 setTimeout(() => {
                     navigate("/login")
-                }, 3000);
+                }, 2000);
             })
             .catch((error) => {
                 const errorCode = error.code;

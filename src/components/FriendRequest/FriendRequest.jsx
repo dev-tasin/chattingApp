@@ -15,7 +15,7 @@ const FriendRequest = () => {
         </div>
         <div className='flex gap-x-5 justify-between items-center border-b-[2px] pb-[15px]'>
             <div className='w-[70px] h-[70px] rounded-full overflow-hidden object-cover'>
-                <img className='h-[70px] w-[70px]' src={userOne} alt="#user_pic" />
+                <img className='h-[70px] w-[70px]' src={userOne} alt="user_pic" />
             </div>
             <div className='-ml-[90px]'>
                 <h4 className='font-poppins font-semibold text-[18px] text-black'>Raghav</h4>
