@@ -40,16 +40,16 @@ const Sidebar = () => {
         </div>
         <ul >
             <li className='pb-[83px]'>
-                <AiOutlineHome className='text-[46px] text-white'/>
+                <AiOutlineHome className='text-[46px] text-white cursor-pointer'/>
             </li>
             <li className='pb-[83px]'>
-                <AiOutlineMessage className='text-[46px] text-white'/>
+                <AiOutlineMessage className='text-[46px] text-white cursor-pointer'/>
             </li>
             <li className='pb-[83px]'>
-                <IoIosNotificationsOutline className='text-[46px] text-white'/>
+                <IoIosNotificationsOutline className='text-[46px] text-white cursor-pointer'/>
             </li>
             <li className='pb-[83px]'>
-                <CiSettings className='text-[46px] text-white'/>
+                <CiSettings className='text-[46px] text-white cursor-pointer'/>
             </li>
             <li className='pt-[104px] pb-[47px] '>
                 <ImExit onClick={handleLogin} className='text-[46px] text-white cursor-pointer'/>
