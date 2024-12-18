@@ -131,7 +131,7 @@ const Registration = () => {
                         </div>
                         <p className='w-[368px] flex justify-center mt-[5px] font-nunito font-semibold text-[13.76px] text-[#ff2c2c] '> {passwordErr} </p>
                     </div>
-                    <button onClick={handleSubmit} className='w-[368px] bg-[#5F35F5] text-white text-[20.64px] font-nunito font-semibold rounded-[86px] py-[20px] flex justify-center mt-[30px] focus:outline-none'>Sign Up</button>
+                    <button onClick={handleSubmit} className='w-[368px] bg-primary text-white text-[20.64px] font-nunito font-semibold rounded-[86px] py-[20px] flex justify-center mt-[30px] focus:outline-none'>Sign Up</button>
                     <p className='w-[368px] mt-[10px] cursor-pointer flex justify-center font-opensans text-[13.34px] text-[#03014C]'>Already  have an account ? <span className='pl-2 font-bold text-[#EA6C00]'><Link to="/login">Sign In</Link></span> </p>
                 </div>
             </div>

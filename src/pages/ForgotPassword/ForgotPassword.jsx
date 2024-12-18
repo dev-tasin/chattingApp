@@ -54,7 +54,7 @@ const ForgotPassword = () => {
             transition:Bounce
         />
         <div className='w-[500px] bg-white p-10'>
-            <h3 className='text-center font-nunito font-semibold text-2xl'>Reset Your Password</h3>
+            <h3 className='text-center font-nunito font-bold text-black text-2xl'>Reset Your Password</h3>
             <div>
                 <p className='mt-5 font-opensans text-[13.34px] text-[#8180A5]'>Email Address</p>
                 <input onChange={handleEmail} value={email} type="email" placeholder='Enter Your Email Address' className='w-[372px] py-[16px]  bg-transparent text-[#03014C] font-opensans font-semibold text-[20px] border-b-2 border-[#CDCCDB] focus:border-[#03014C] focus:outline-none placeholder:text-[#03014C]' />

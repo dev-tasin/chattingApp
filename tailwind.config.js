@@ -12,7 +12,7 @@ export default {
         'nunito': ['Nunito', 'sans-serif'],
       },
       colors: {
-        'primary': '#5F35F5',
+        'primary': '#2d2a4a',
       },
       maxWidth: {
         'container': '1385px',

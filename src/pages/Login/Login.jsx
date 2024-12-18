@@ -104,7 +104,7 @@ const Login = () => {
                     <input onChange={handlePassword} value={password} type={`${showpassword ? "text" : "password"}`} placeholder='Enter your password' className='w-[372px] py-[16px]  bg-transparent text-[#03014C] font-opensans font-semibold text-[20px] border-b-2 border-[#CDCCDB] focus:border-[#03014C] focus:outline-none placeholder:text-[#03014C]'/>
                     <p className='w-[368px] flex justify-center mt-[5px] font-nunito font-semibold text-[13.76px] text-[#ff2c2c] '> {passwordErr} </p>
                 </div>
-                <button onClick={handleSubmit} className='w-[424px] bg-[#5F35F5] text-white text-[20.9px] font-opensans font-semibold rounded-[8.71px] py-[26px] flex justify-center mt-[30px] shadow-[0px_4px_10px_0px_rgba(95,52,245,0.5)]'>Login to Continue</button>
+                <button onClick={handleSubmit} className='w-[424px] bg-primary text-white text-[20.9px] font-opensans font-semibold rounded-[8.71px] py-[26px] flex justify-center mt-[30px] shadow-[0px_4px_10px_0px_rgba(95,52,245,0.5)]'>Login to Continue</button>
                 <p className='mt-[15px] font-nunito font-semibold text-base cursor-pointer text-[#ff2c2c] '><Link to="/forgotpassword">Forgot Password ?</Link></p>
                 <p className='w-[368px] mt-[34px] flex justify-center font-opensans text-[13.34px] text-[#03014C]'>Don’t have an account ?<span className='pl-2 font-bold text-[#EA6C00]'><Link to="/registration">Sign Up</Link></span> </p>
             </div>
