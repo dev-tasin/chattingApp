@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import reg_img from "../../assets/registration.png";
 import { GoEyeClosed } from "react-icons/go";
 import { FaEye } from "react-icons/fa";
-import { getAuth, createUserWithEmailAndPassword , sendEmailVerification } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword , sendEmailVerification, updateProfile } from "firebase/auth";
 import { Link, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -61,15 +61,20 @@ const Registration = () => {
         if(email && fullName && password && (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) && (/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$!%*?&])[A-Za-z\d@#$!%*?&]{8,}$/.test(password)) )
         {
             createUserWithEmailAndPassword(auth, email, password)
-            .then(() => {
-                sendEmailVerification(auth.currentUser)
-                toast.success("Registration Successfully Done");
-                setEmail("")
-                setFullName("")
-                setPassword("")
-                setTimeout(() => {
-                    navigate("/login")
-                }, 2000);
+            .then(()=>{
+                updateProfile(auth.currentUser, {
+                    displayName: fullName, 
+                    photoURL: "https://example.com/jane-q-user/profile.jpg"
+                  }).then(() => {
+                    sendEmailVerification(auth.currentUser)
+                    toast.success("Registration Successfully Done");
+                    setEmail("")
+                    setFullName("")
+                    setPassword("")
+                    setTimeout(() => {
+                        navigate("/login")
+                    }, 2000);
+                })
             })
             .catch((error) => {
                 const errorCode = error.code;

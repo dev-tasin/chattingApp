@@ -12,10 +12,16 @@ import Cropper from "react-cropper";
 import "cropperjs/dist/cropper.css";
 import { ImCross } from "react-icons/im";
 import uploadImage from "../../assets/uploadImage.jpg"
-
+import { getDownloadURL, getStorage, ref, uploadString } from "firebase/storage";
+import { getAuth, updateProfile } from "firebase/auth";
+import { useSelector } from 'react-redux';
 
 
 const Sidebar = () => {
+    const storage = getStorage();
+    const auth = getAuth();
+    const data = useSelector((data) => data.userDetails.userInfo);
+    
     const navigate = useNavigate();
     const [show , setShow] = useState(false)
     const [image, setImage] = useState();
@@ -52,9 +58,26 @@ const Sidebar = () => {
         reader.readAsDataURL(files[0]);
       };
 
+      const getCropData = () => {
+        if (typeof cropperRef.current?.cropper !== "undefined") {
+          setCropData(cropperRef.current?.cropper.getCroppedCanvas().toDataURL());
+        }
+        const storageRef = ref(storage, auth.currentUser.uid);
+        const message4 = cropperRef.current?.cropper.getCroppedCanvas().toDataURL();
+        uploadString(storageRef, message4, 'data_url').then((snapshot) => {
+        getDownloadURL(storageRef).then((downloadURL) => {
+            updateProfile(auth.currentUser, {
+                photoURL: downloadURL,
+              }).then(()=>{
+                setShow(false)
+              })
+          });
+        })
+      };
+
     return (
       <section>
-        <div className='mr-[43px] h-[954px] w-[186px] flex flex-col items-center px-[43px] pt-[35px] bg-primary rounded-[20px] my-5 border'>
+        <div className='mr-[43px] w-[186px] flex flex-col items-center px-[43px] pt-[35px] bg-primary rounded-[20px] my-5 border'>
             <ToastContainer
                 position="top-center"
                 autoClose={5000}
@@ -68,13 +91,14 @@ const Sidebar = () => {
                 theme="dark"
                 transition={Bounce}
             />
-            <div className='relative group mb-[78px] w-[100px] h-[100px] rounded-full object-cover bg-black'>
-                <img src={sidebarProfile} alt="#profile_pic" />
+            <div className='relative group w-[100px] h-[100px] rounded-full object-cover bg-black overflow-hidden'>
+                <img src={data.photoURL} alt="" />
                 <div className='w-[100px] h-[100px] group-hover:opacity-[0.6] bg-black absolute top-0 left-0 rounded-full opacity-0 duration-200 cursor-pointer flex justify-center items-center'>
                     <FaCloudUploadAlt onClick={handleUpload} className='text-white text-2xl'/>
                 </div>
             </div>
-            <ul>
+            <p className='mt-2 font-opensans font-semibold text-sm text-white text-center'>{data.displayName}</p>
+            <ul className='mt-[78px]'>
                 <li className='pb-[83px]'>
                     <AiOutlineHome className='text-[46px] text-white cursor-pointer' />
                 </li>
@@ -128,7 +152,7 @@ const Sidebar = () => {
                      <input type="file" onChange={onChange} />
                     </div>
                     <div className='flex justify-center'>
-                        <button className='bg-white text-black text-base font-opensans font-semibold rounded px-3 py-2   flex justify-center mt-2'>Upload
+                        <button onClick={getCropData} className='bg-white text-black text-base font-opensans font-semibold rounded px-3 py-2   flex justify-center mt-2'>Upload
                         </button>
                     </div>
                 </div>
