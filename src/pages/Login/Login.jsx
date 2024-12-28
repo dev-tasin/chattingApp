@@ -3,15 +3,17 @@ import googleicon_img from '../../assets/google.png'
 import login_img from '../../assets/login.jpg'
 import { GoEyeClosed } from "react-icons/go";
 import { FaEye } from "react-icons/fa";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { ToastContainer, toast } from 'react-toastify';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { userLoginInfo } from '../../Slices/userSlice';
+import { getDatabase, ref, set } from "firebase/database";
 
 
 
 const Login = () => {
+    const db = getDatabase();
     const auth = getAuth();
     const navigate = useNavigate()
 
@@ -50,13 +52,23 @@ const Login = () => {
         if (email) {
           signInWithEmailAndPassword(auth, email, password)
           .then((user) => {
-            console.log(user.user);
-            dispatch(userLoginInfo(user.user))
-            localStorage.setItem("userLoginInfo" , JSON.stringify(user.user))
-            toast.success("Login Successfully Done");
-            setTimeout(() => {
-                navigate("/home")
-            }, 2000);
+            updateProfile(auth.currentUser, {
+            displayName: user.user.displayName, 
+            photoURL: "https://example.com/jane-q-user/profile.jpg"
+            }).then(()=>{
+                console.log(user.user);
+                dispatch(userLoginInfo(user.user))
+                localStorage.setItem("userLoginInfo" , JSON.stringify(user.user))
+                toast.success("Login Successfully Done");
+                setTimeout(() => {
+                    navigate("/home")
+                }, 2000);
+            }).then(()=>{
+                set(ref(db, 'users/' + user.user.uid), {
+                    username: user.user.displayName,
+                    email: user.user.email,
+                  });
+            })
           })
           .catch((error) => {
               const errorCode = error.code;

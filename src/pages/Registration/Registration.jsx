@@ -61,11 +61,12 @@ const Registration = () => {
         if(email && fullName && password && (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) && (/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$!%*?&])[A-Za-z\d@#$!%*?&]{8,}$/.test(password)) )
         {
             createUserWithEmailAndPassword(auth, email, password)
-            .then(()=>{
+            .then((user)=>{
                 updateProfile(auth.currentUser, {
                     displayName: fullName, 
                     photoURL: "https://example.com/jane-q-user/profile.jpg"
                   }).then(() => {
+                    console.log(user);
                     sendEmailVerification(auth.currentUser)
                     toast.success("Registration Successfully Done");
                     setEmail("")
