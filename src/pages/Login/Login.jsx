@@ -53,8 +53,7 @@ const Login = () => {
           signInWithEmailAndPassword(auth, email, password)
           .then((user) => {
             updateProfile(auth.currentUser, {
-            displayName: user.user.displayName, 
-            photoURL: "https://example.com/jane-q-user/profile.jpg"
+            displayName: user.user.displayName,
             }).then(()=>{
                 console.log(user.user);
                 dispatch(userLoginInfo(user.user))

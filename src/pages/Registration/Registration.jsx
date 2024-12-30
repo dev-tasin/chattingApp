@@ -73,7 +73,7 @@ const Registration = () => {
                     setFullName("")
                     setPassword("")
                     setTimeout(() => {
-                        navigate("/login")
+                    navigate("/login")
                     }, 2000);
                 })
             })
